@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>QRcode</title>
+    <link rel="icon" type="image/png" href="https://bestpika.github.io/icon/flaticon.com/free-icon/qr-code_237199.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="js/vue-qrcode.js?v=1.0.2"></script>
+    <style>
+      textarea {
+        resize: none;
+        height: 400px !important;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <form v-on:reset="formReset" class="container py-5">
+      <div class="row no-gutters">
+        <div class="col-sm-6">
+          <textarea id="input" v-model="input" class="form-control"></textarea>
+        </div>
+        <div class="col-sm-6 text-center">
+          <qrcode v-model="input" tag="canvas" v-bind:options="options"></qrcode>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm text-right">
+          <div class="btn-group" role="group">
+            <input type="reset" class="btn btn-outline-secondary" />
+          </div>
+        </div>
+      </div>
+    </form>
+    <script>
+      (() => {
+        Vue.component(VueQrcode.name, VueQrcode)
+        new Vue({
+          el: 'form',
+          data: {
+            options: {
+              width: 400
+            },
+            input: ' '
+          },
+          methods: {
+            formReset(e) {
+              e.preventDefault()
+              this.input = '(๑´ڡ`๑)'
+            }
+          },
+          mounted() {
+            document.querySelector('form').reset()
+            document.querySelector('#input').focus()
+          }
+        })
+      })()
+    </script>
+  </body>
+
+</html>
